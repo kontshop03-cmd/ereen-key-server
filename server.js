@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-const ADMIN_PASSWORD = 'EreenPrime';
+const ADMIN_PASSWORD = 'ereen2024';
 
 function loadKeys() {
   return JSON.parse(fs.readFileSync('keys.json'));
@@ -36,17 +36,20 @@ app.post('/verify', (req, res) => {
   if (found.devices.length === 0) {
     found.devices.push(device_id);
     saveKeys(data);
-    return res.json({ valid: true, message: 'Welcome to Smoke!' });
+    return res.json({ valid: true, message: 'Welcome to Ereen!' });
   }
+
   if (found.devices[0] === device_id) {
-    return res.json({ valid: true, message: 'Welcome to Smoke!' });
+    return res.json({ valid: true, message: 'Welcome to Ereen!' });
   }
+
   if (found.devices.length >= found.max_devices) {
     return res.json({ valid: false, message: 'Key used on another device' });
   }
+
   found.devices.push(device_id);
   saveKeys(data);
-  return res.json({ valid: true, message: 'Welcome to Smoke!' });
+  return res.json({ valid: true, message: 'Welcome to Ereen!' });
 });
 
 // Admin - get all keys
@@ -120,5 +123,5 @@ app.post('/admin/reset', (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log('Ereen Key Server Running!');
+  console.log('🔥 Ereen Key Server Running!');
 });
